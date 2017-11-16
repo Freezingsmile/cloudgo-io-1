@@ -24,6 +24,13 @@ func unknownImp(rw http.ResponseWriter, r *http.Request) {
 	// have not implement yet
 	http.Error(rw, "501 Not Implement", http.StatusNotImplemented)
 }
+func apihandle(w http.ResponseWriter, req *http.Request) {
+	rdr := render.New()
+	rdr.JSON(w, http.StatusOK, struct {
+		ID      string
+		Content string
+	}{ID: "111111", Content: "Hello from Go!"})
+}
 func showTable(rw http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	rdr := render.New()
@@ -47,6 +54,7 @@ func initRoutes(mx *mux.Router) {
 	}
 
 	mx.HandleFunc("/unknown", unknownImp).Methods("GET")
+	mx.HandleFunc("/api", apihandle).Methods("GET")
 	mx.HandleFunc("/", showTable).Methods("POST")
 	mx.PathPrefix("/").Handler(http.FileServer(http.Dir(webRoot + "/assets/")))
 
