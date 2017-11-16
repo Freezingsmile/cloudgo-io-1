@@ -1,7 +1,7 @@
 # cloudgo-io
 ## cloudgo-io实现了什么？
 cloudgo-io利用negroni和mux实现了简单的web功能，程序将会运行在8080端口上。  
-访问`localhost:8080`就可以看到一个简单的登陆页面，输入并提交，会返回一个写着你的密码和用户名的表格。  
+访问`localhost:8080`就可以看到一个简单的登陆页面，输入并提交，会返回一个写着你的密码和用户名的表格。  
 访问`localhost:8080/unknown`会返回一个501错误。  
 使用了Negroni的logging中间件，第一次访问是这样的：
 ```
